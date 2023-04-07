@@ -54,8 +54,23 @@ if (isset($_POST["submit"])) {
 
             <div class="icons">
                 <div id="search-btn" class="fas fa-search"></div>
+                
 
                 <div id="login-btn" class="fas fa-user"> SIGN IN
+                    <?php
+                    $usr = "1";
+                    if ($_SESSION['username'] != "") {
+                        echo "Hey " . $_SESSION['username'];
+                        $usr = $_SESSION['username'];
+                        ?>
+                    <?php }
+                    ?>
+                </div>
+            
+                <div id="search-btn" class="fas fa-search"></div>
+                
+
+                <div id="signup-btn" class="fa fa-user-plus"> SIGN UP
                     <?php
                     $usr = "1";
                     if ($_SESSION['username'] != "") {
@@ -107,7 +122,7 @@ if (isset($_POST["submit"])) {
         <div id="close-login-btn" class="fas fa-times"></div>
 
         <form action="" method="POST">
-            <h3>sign in</h3> 
+            <h3>log in</h3> 
             <span>username</span>
             <input type="text" name="name" class="box" placeholder="enter your username" id="">
             <span>password</span>
@@ -120,5 +135,28 @@ if (isset($_POST["submit"])) {
         </form>
 
     </div>
+
+    
+    <!-- signup form  -->
+
+    <div class="signup-form-container">
+
+        <div id="close-signup-btn" class="fas fa-times"></div>
+
+        <form action="" method="POST">
+            <h3>sign up</h3> 
+            <span>username</span>
+            <input type="text" name="name" class="box" placeholder="enter your username" id="">
+            <span>password</span>
+            <input type="password" name="pwd" class="box" placeholder="enter your password" id="pwd" style="margin-bottom: 5%">
+            <input type="checkbox" onclick="showPass()" style="margin-right: 2%;vertical-align: middle;margin-left: 1%;width: 20px;height: 20px;"><span style="display: inline;">Show Password</span>
+            
+            <input type="submit" value="sign in" class="btn" name="submit">
+            <!-- <p>forget password ? <a href="#">click here</a></p>
+            <p>don't have an account ? <a href="#">create one</a></p> -->
+        </form>
+
+    </div>
+    
 
     

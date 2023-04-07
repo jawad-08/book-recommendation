@@ -19,6 +19,21 @@ let usrnam = document.getElementById('usrnam');
   }
 }
 
+
+
+let signupForm = document.querySelector('.signup-form-container');
+
+// if(usrnam == "1"){
+  document.querySelector('#signup-btn').onclick = () =>{
+    signupForm.classList.toggle('active');
+  // }
+  
+  document.querySelector('#close-signup-btn').onclick = () =>{
+    signupForm.classList.remove('active');
+  }
+}
+
+
 function showPass() {
   var x = document.getElementById("pwd");
   if (x.type === "password") {
