@@ -1,8 +1,15 @@
 <?php
-//error_reporting(0);
 include('dbconnect.php');
-$getproducts = mysqli_query($conn, "SELECT *  FROM book1  limit 12 ") or die(mysqli_error($conn));
+$bkfilt = $_REQUEST["category"];
+$filtcond = "";
+$newfilt = substr($bkfilt, 0, -3); 
+if($bkfilt != ''){
+    $filtcond = " and genres like $newfilt ";
+}
+// echo $filtcond;
 
+// echo "SELECT *  FROM `book1`  where isbn != '' $filtcond  limit 100 ";
+$getproducts = mysqli_query($conn, "SELECT *  FROM `book1`  where isbn != '' $filtcond  limit 100 ") or die(mysqli_error($conn));
 ?>
 <style>
     .mainfont {

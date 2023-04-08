@@ -102,7 +102,7 @@ $getcategory = mysqli_query($conn, "SELECT * from category where name != '' grou
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="float-container">
 
         <div class="float-child col-lg-4">
             <div class="green text-center big-font">
@@ -120,11 +120,11 @@ $getcategory = mysqli_query($conn, "SELECT * from category where name != '' grou
                     </div>
                     <div class=''>
 
-                        <input class="checkbox marg pad chkbk" type="checkbox">
+                        <input class="checkbox marg pad chkbk" type="checkbox" value="'%<?= $fetcateg->name ?>%'">
                     </div>
                 </div>
             <?php } ?>
-
+                <input type="submit" value="Filter" class="btn filter" name="filter" style="margin:10%;">
         </div>
 
         <div class="col-lg-8 ">

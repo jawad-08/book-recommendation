@@ -37,14 +37,13 @@ include("header.php");
 
         <div class="swiper-wrapper">
             <?php
-            mysqli_query($conn, "Create temporary table rate5 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 5 limit 10
-                            ");
-            mysqli_query($conn, "Create temporary table rate4 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 4 limit 10 
-                            ");
+            // mysqli_query($conn, "Create temporary table rate5 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 5 limit 10
+            //                 ");
+            // mysqli_query($conn, "Create temporary table rate4 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 4 limit 10 
+            //                 ");
 
-            $gettpbk = mysqli_query($conn, "SELECT * FROM rate5  
-                                                union 
-                                                SELECT * FROM rate4");
+            $gettpbk = mysqli_query($conn, "SELECT * FROM book1 where rating >= 4 and rating <= 5  
+                                                 limit 10");
 
             while ($fettpbk = mysqli_fetch_array($gettpbk)) {
                 ?>
@@ -54,15 +53,15 @@ include("header.php");
                         <a class="fas fa-eye" data-name="1"></a>
                     </div>
                     <div class="image">
-                        <img src="<?= $fettpbk['imgurll'] ?>" alt="">
+                        <img src="<?= $fettpbk['coverImg'] ?>" alt="">
                     </div>
                     <div class="content">
                         <b>
-                            <?= $fettpbk['bktitle'] ?>
+                            <?= $fettpbk['title'] ?>
                         </b>
                         <div class="stars">
                             <?php
-                            $bkrating = $fettpbk['bkratings'];
+                            $bkrating = $fettpbk['rating'];
                             for ($i = 0; $i < $bkrating; $i++) {
                                 ?>
                                 <i class="fas fa-star"></i>
