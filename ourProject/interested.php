@@ -1,43 +1,59 @@
 <?php
+ob_start();
+session_start();
 include("header.php");
+//$user = $_SESSION["username"];
+$user = "jd";
+if (!$user) {
+  header("Location:main.php");
+}
 
 $getcategory = mysqli_query($conn, "SELECT * from category") or die(mysqli_error($conn));
+
+if (isset($_POST["submit"])) {
+  $a = 1;
+  $interest = implode(",", $_POST["interest"]);
+  
+  mysqli_query($conn, "UPDATE user SET `interest`='$interest' WHERE `name`='$user'") or die(mysqli_error($conn));
+  header("Location: main.php");
+}
 
 ?>
 
 <section class="featured" id="featured">
   <h1 class="heading"><span>CHOOSE YOUR INTEREST</span></h1>
-  </form action="" method="POST">
-  <div class="genreParent">
-
-    <?php
-    $ctr = 0;
-    while ($fetcategory = mysqli_fetch_array($getcategory)) {
-      if ($ctr % 5 == 0) {
-        echo "</div>";
-        echo '<div class="genreParent">';
-      }
-      $ctr++;
-
-      ?>
-      <div class="genreContainer">
-        <div class="image">
-          <img src="<?= $fetcategory['image'] ?>" alt="">
-        </div>
-        <div class="label">
-          <h3>
-            <input type="" ><?= $fetcategory['name'] ?>
-          </h3>
-        </div>
-      </div>
+  <form action="" method="POST">
+    <div class="genreParent">
 
       <?php
-    }
-    ?>
-  </div>
-  <div style="text-align:center">
-  <input type="submit" value="Next" class="btn text-center" name="submit">
-  </div>
+      $ctr = 0;
+      while ($fetcategory = mysqli_fetch_array($getcategory)) {
+        if ($ctr % 5 == 0) {
+          echo "</div>";
+          echo '<div class="genreParent">';
+        }
+        $ctr++;
+
+        ?>
+        <div class="genreContainer">
+          <div class="image">
+            <img src="<?= $fetcategory['image'] ?>" alt="">
+          </div>
+          <div class="label">
+            <h3>
+              <input class="checkbox marg pad chkbk" type="checkbox" name='interest' value="<?= $fetcategory['name'] ?>">
+              <?= $fetcategory['name'] ?>
+            </h3>
+          </div>
+        </div>
+
+        <?php
+      }
+      ?>
+    </div>
+    <div style="text-align:center">
+      <input type="submit" value="Next" class="btn text-center" name="submit">
+    </div>
   </form>
 
 </section>

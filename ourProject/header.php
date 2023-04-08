@@ -15,10 +15,9 @@ if (isset($_POST["submit"])) {
     } else {
         $_SESSION["username"] = "";
     }
-
-
-
 }
+
+
 if (isset($_POST["submit2"])) {
     $a = 1;
     $fname = $_POST["fname"];
