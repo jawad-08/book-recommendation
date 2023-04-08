@@ -8,11 +8,11 @@ document.querySelector('#search-btn').onclick = () =>{
 
 let loginForm = document.querySelector('.login-form-container');
 
-let usrnam = document.getElementById('usrnam');
-// if(usrnam == "1"){
+var usrnam = document.getElementById('usrnam').value;
+if(usrnam == ""){
   document.querySelector('#login-btn').onclick = () =>{
     loginForm.classList.toggle('active');
-  // }
+ }
   
   document.querySelector('#close-login-btn').onclick = () =>{
     loginForm.classList.remove('active');
@@ -23,10 +23,10 @@ let usrnam = document.getElementById('usrnam');
 
 let signupForm = document.querySelector('.signup-form-container');
 
-// if(usrnam == "1"){
+ if(usrnam == ""){
   document.querySelector('#signup-btn').onclick = () =>{
     signupForm.classList.toggle('active');
-  // }
+  }
   
   document.querySelector('#close-signup-btn').onclick = () =>{
     signupForm.classList.remove('active');
@@ -42,6 +42,31 @@ function showPass() {
     x.type = "password";
   }
 }
+function showPass2() {
+  var x = document.getElementById("pass");
+  var y = document.getElementById("conpass");
+  if (x.type === "password" && y.type === "password") {
+    x.type = "text";
+    y.type = "text";
+  } else {
+    x.type = "password";
+    y.type = "password";
+  }
+}
+
+function verifyPassword() {  
+  var pw = document.getElementById("pass").value;  
+  var cpw = document.getElementById("conpass").value;  
+
+  if(pw == cpw) {  
+     document.getElementById("message").innerHTML = "Password matched!!";  
+     return false;  
+  }
+  else{
+    document.getElementById("message").innerHTML = "Password doesn't matched!!";  
+  }  
+}
+
 
 window.onscroll = () =>{
 

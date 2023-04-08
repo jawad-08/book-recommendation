@@ -16,6 +16,30 @@ if (isset($_POST["submit"])) {
         $_SESSION["username"] = "";
     }
 
+
+
+}
+if (isset($_POST["submit2"])) {
+    $a = 1;
+    $fname = $_POST["fname"];
+    $uname = $_POST["uname"];
+    $pass = $_POST["pass"];
+    $email = $_POST["email"];
+    $gender = $_POST["gender"];
+    $mvouch = $qvouch;
+
+    if ($fname != "" && $pass != "") {
+        mysqli_query($conn, "INSERT INTO `user`(`id`,`name`,`username`,`password`,`email`,`gender`)
+    VALUES('$qvouch' , '$fname', '$uname','$pass','$email','$gender')") or die(mysqli_error($conn));
+    }
+    if (mysqli_num_rows($login) == 1) {
+        $_SESSION["username"] = $_POST['name'];
+        header("Location:main.php");
+
+    } else {
+        $_SESSION["username"] = "";
+    }
+
 }
 ?>
 <!DOCTYPE html>
@@ -54,50 +78,29 @@ if (isset($_POST["submit"])) {
 
             <div class="icons">
                 <div id="search-btn" class="fas fa-search"></div>
-                
-
-                <div id="login-btn" class="fas fa-user"> SIGN IN
-                    <?php
+                <?php
+                $usr = "";
+                if ($_SESSION['username'] != "") {
                     $usr = "1";
-                    if ($_SESSION['username'] != "") {
-                        echo "Hey " . $_SESSION['username'];
-                        $usr = $_SESSION['username'];
-                        ?>
-                    <?php }
-                    ?>
-                </div>
-            
-                <div id="search-btn" class="fas fa-search"></div>
-                
-
-                <div id="signup-btn" class="fa fa-user-plus"> SIGN UP
-                    <?php
-                    $usr = "1";
-                    if ($_SESSION['username'] != "") {
-                        echo "Hey " . $_SESSION['username'];
-                        $usr = $_SESSION['username'];
-                        ?>
-                    <?php }
-                    ?>
-                </div>
-                <?php if ($_SESSION['username'] != "") {
-                    ?>
-                    <a href="logout.php"><i class="fas fa-power-off"></i> Logout</a>
-                <?php }
+                    echo "<div id='login-btn' class='fas fa-user'>Hey " . $_SESSION['username'];
+                    echo "<a href='logout.php'><i class='fas fa-power-off'></i> Logout</a></div>";
+                } else {
+                    echo "<div id='login-btn' class='fas fa-user'> LOG IN / </div>";
+                }
+                if ($_SESSION['username'] == "") {
+                    echo "<div id='signup-btn' class='fa fa-user'> SIGN UP</div>";
+                }
                 echo "<input type='hidden' id='usrnam' value='$usr'>";
-
                 ?>
-
             </div>
-
         </div>
 
         <div class="header-2">
             <nav class="navbar">
                 <a href="main.php">Home</a>
                 <a href="explore.php">Explore</a>
-                <a href="#arrivals">My Books</a>
-                <a href="#reviews">About</a>
+                <a href="booklist.php">My Books</a>
+                <a href="about.php">About</a>
             </nav>
         </div>
 
@@ -121,42 +124,74 @@ if (isset($_POST["submit"])) {
 
         <div id="close-login-btn" class="fas fa-times"></div>
 
-        <form action="" method="POST">
-            <h3>log in</h3> 
+        <form action="interested.php" method="POST">
+            <h3>sign in</h3>
             <span>username</span>
             <input type="text" name="name" class="box" placeholder="enter your username" id="">
             <span>password</span>
-            <input type="password" name="pwd" class="box" placeholder="enter your password" id="pwd" style="margin-bottom: 5%">
-            <input type="checkbox" onclick="showPass()" style="margin-right: 2%;vertical-align: middle;margin-left: 1%;width: 20px;height: 20px;"><span style="display: inline;">Show Password</span>
-            
+            <input type="password" name="pwd" class="box" placeholder="enter your password" id="pwd"
+                style="margin-bottom: 5%">
+            <input type="checkbox" onclick="showPass()"
+                style="margin-right: 2%;vertical-align: middle;margin-left: 1%;width: 20px;height: 20px;"><span
+                style="display: inline;">Show Password</span>
+
             <input type="submit" value="sign in" class="btn" name="submit">
             <!-- <p>forget password ? <a href="#">click here</a></p>
-            <p>don't have an account ? <a href="#">create one</a></p> -->
+    <p>don't have an account ? <a href="#">create one</a></p> -->
         </form>
 
     </div>
 
-    
+
     <!-- signup form  -->
 
     <div class="signup-form-container">
 
         <div id="close-signup-btn" class="fas fa-times"></div>
 
-        <form action="" method="POST">
-            <h3>sign up</h3> 
+        <form action="" method="POST" onsubmit="return verifyPassword()">
+            <h3>sign up</h3>
+            <span>full name</span>
+            <input type="text" name="fname" class="box" placeholder="enter your full name" id="">
             <span>username</span>
-            <input type="text" name="name" class="box" placeholder="enter your username" id="">
+            <input type="text" name="uname" class="box" placeholder="enter your username" id="">
+            <span>email</span>
+            <input type="email" name="email" class="box" placeholder="enter your email" id="">
             <span>password</span>
-            <input type="password" name="pwd" class="box" placeholder="enter your password" id="pwd" style="margin-bottom: 5%">
-            <input type="checkbox" onclick="showPass()" style="margin-right: 2%;vertical-align: middle;margin-left: 1%;width: 20px;height: 20px;"><span style="display: inline;">Show Password</span>
-            
-            <input type="submit" value="sign in" class="btn" name="submit">
+            <input type="password" name="pass" class="box" placeholder="enter your password" id="pass"
+                style="margin-bottom: 5%">
+
+            <span>confirm password</span>
+            <input type="password" name="conpass" class="box" placeholder="enter your password again" id="conpass">
+
+            <span style="margin-bottom: 2%">gender</span>
+            <input type="radio" style="width:20px;height:25px" name="gender" value="male"><span
+                style="display: inline;vertical-align: top;padding-left: 2%;padding-right: 2%;">Male</span>
+            <input type="radio" style="width:20px;height:25px" name="gender" value="female"><span
+                style="display: inline;vertical-align: top;padding-left: 2%;">Female</span>
+
+            <span id="message" style="color:red"> </span>
+            <!-- <input type="checkbox" onclick="showPass2()"
+                style="margin-right: 2%;vertical-align: middle;margin-left: 1%;width: 20px;height: 20px;"><span
+                style="display: inline;">Show Password</span> -->
+
+
+
+            <input type="submit" value="sign up" class="btn" name="submit2">
             <!-- <p>forget password ? <a href="#">click here</a></p>
             <p>don't have an account ? <a href="#">create one</a></p> -->
         </form>
 
     </div>
-    
+    <script>
+        const activePage = window.location.pathname;
+        const navLinks = document.querySelectorAll('nav a').
+            forEach(
+                link => {
+                    if (link.href.includes(`${activePage}`)) {
+                        link.classList.add('active');
+                    }
+                }
 
-    
+            )
+    </script>

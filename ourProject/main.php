@@ -2,164 +2,164 @@
 include("header.php");
 ?>
 
-    <!-- home section starts  -->
+<!-- home section starts  -->
 
-    <section class="home" id="home">
+<section class="home" id="home">
 
-        <div class="row">
+    <div class="row">
 
-            <div class="content">
-                <h3>"Good Books Don't Give Up All The Secrets At Once.."</h3>
-            </div>
-
-            <div class="swiper books-slider">
-                <div class="swiper-wrapper">
-                    <a href="#" class="swiper-slide"><img src="image/bk10.jpg" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="image/bk2.jpg" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="image/bk7.jpg" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="image/bk5.jpg" alt=""></a>
-                    <a href="#" class="swiper-slide"><img src="image/bk3.jpg" alt=""></a>
-                </div>
-                <img src="image/stand.png" class="stand" alt="">
-            </div>
-
+        <div class="content">
+            <h3>"Good Books Don't Give Up All The Secrets At Once.."</h3>
         </div>
 
-    </section>
-
-
-
-    <section class="featured" id="featured">
-
-        <h1 class="heading"> <span>Top-rated books</span> </h1>
-
-        <div class="swiper featured-slider">
-
+        <div class="swiper books-slider">
             <div class="swiper-wrapper">
-                <?php
-                mysqli_query($conn, "Create temporary table rate5 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 5 limit 10
+                <a href="#" class="swiper-slide"><img src="image/bk10.jpg" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="image/bk2.jpg" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="image/bk7.jpg" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="image/bk5.jpg" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="image/bk3.jpg" alt=""></a>
+            </div>
+            <img src="image/stand.png" class="stand" alt="">
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="featured" id="featured">
+
+    <h1 class="heading"> <span>Top-rated books</span> </h1>
+
+    <div class="swiper featured-slider">
+
+        <div class="swiper-wrapper">
+            <?php
+            mysqli_query($conn, "Create temporary table rate5 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 5 limit 10
                             ");
-                mysqli_query($conn, "Create temporary table rate4 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 4 limit 10 
+            mysqli_query($conn, "Create temporary table rate4 SELECT a.*,b.bkratings FROM books a,ratings b WHERE a.ISBN = b.ISBN AND b.bkratings = 4 limit 10 
                             ");
 
-                $gettpbk = mysqli_query($conn, "SELECT * FROM rate5  
+            $gettpbk = mysqli_query($conn, "SELECT * FROM rate5  
                                                 union 
                                                 SELECT * FROM rate4");
 
-                while ($fettpbk = mysqli_fetch_array($gettpbk)) {
-                    ?>
+            while ($fettpbk = mysqli_fetch_array($gettpbk)) {
+                ?>
 
-                    <div class="swiper-slide box">
-                        <div class="icons">
-                            <a class="fas fa-eye" data-name="1"></a>
-                        </div>
-                        <div class="image">
-                            <img src="<?= $fettpbk['imgurll'] ?>" alt="">
-                        </div>
-                        <div class="content">
-                            <b>
-                                <?= $fettpbk['bktitle'] ?>
-                            </b>
-                            <div class="stars">
-                                <?php
-                                $bkrating = $fettpbk['bkratings'];
-                                for ($i = 0; $i < $bkrating; $i++) {
-                                    ?>
-                                    <i class="fas fa-star"></i>
-                                <?php }
+                <div class="swiper-slide box">
+                    <div class="icons">
+                        <a class="fas fa-eye" data-name="1"></a>
+                    </div>
+                    <div class="image">
+                        <img src="<?= $fettpbk['imgurll'] ?>" alt="">
+                    </div>
+                    <div class="content">
+                        <b>
+                            <?= $fettpbk['bktitle'] ?>
+                        </b>
+                        <div class="stars">
+                            <?php
+                            $bkrating = $fettpbk['bkratings'];
+                            for ($i = 0; $i < $bkrating; $i++) {
                                 ?>
-                                <!-- <i class="fas fa-star" value=<?= $fettpbk['bkratings'] ?>></i> -->
-                                <!-- <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            <?php }
+                            ?>
+                            <!-- <i class="fas fa-star" value=<?= $fettpbk['bkratings'] ?>></i> -->
+                            <!-- <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star-half-alt"></i> -->
-                            </div>
                         </div>
                     </div>
-                <?php }
-                ?>
+                </div>
+            <?php }
+            ?>
 
 
-
-            </div>
-
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
 
         </div>
 
-    </section>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
 
-    <!-- Book Preview Section Starts here -->
-    <section>
-        <div class="booksPreview">
-            <div class="preview" data-target="1">
-                <div class="imgSec">
-                    <i class="fas fa-arrow-left"></i>
-                    <img src="image/bk1.jpg" alt="">
-                    <h3>Book Name</h3>
-                </div>
-                <div class="detailSec">
-                    <i class="far fa-heart"></i>
-                    <i class="far fa-bookmark"></i>
-                    <div class="overview">
-                        <h5>Overview about the book</h5>
-                    </div>
-                    <div class="ratings">
+    </div>
 
-                    </div>
-                    <div class="comments"></div>
-                    <div class="link"></div>
+</section>
+
+<!-- Book Preview Section Starts here -->
+<section>
+    <div class="booksPreview">
+        <div class="preview" data-target="1">
+            <div class="imgSec">
+                <i class="fas fa-arrow-left"></i>
+                <img src="image/bk1.jpg" alt="">
+                <h3>Book Name</h3>
+            </div>
+            <div class="detailSec">
+                <i class="far fa-heart"></i>
+                <i class="far fa-bookmark"></i>
+                <div class="overview">
+                    <h5>Overview about the book</h5>
                 </div>
+                <div class="ratings">
+
+                </div>
+                <div class="comments"></div>
+                <div class="link"></div>
             </div>
         </div>
-    </section>
-    <!-- footer section starts  -->
+    </div>
+</section>
+<!-- footer section starts  -->
 
-    <section class="footer">
+<section class="footer">
 
-        <div class="box-container">
+    <div class="box-container">
 
-            <div class="box">
-                <!-- <h3>our locations</h3>
+        <div class="box">
+            <!-- <h3>our locations</h3>
             <a href="#"> <i class="fas fa-map-marker-alt"></i> india </a>
             <a href="#"> <i class="fas fa-map-marker-alt"></i> USA </a>
             <a href="#"> <i class="fas fa-map-marker-alt"></i> russia </a>
             <a href="#"> <i class="fas fa-map-marker-alt"></i> france </a>
             <a href="#"> <i class="fas fa-map-marker-alt"></i> japan </a>
             <a href="#"> <i class="fas fa-map-marker-alt"></i> africa </a> -->
-            </div>
+        </div>
 
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#"> <i class="fas fa-arrow-right"></i> Home </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> Explore </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> My Books </a>
-                <a href="#"> <i class="fas fa-arrow-right"></i> About </a>
-            </div>
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#"> <i class="fas fa-arrow-right"></i> Home </a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> Explore </a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> My Books </a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> About </a>
+        </div>
 
-            <div class="box">
-                <h3>Contact Info</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#"> <i class="fas fa-envelope"></i> dalvimehdi@gmail.com </a>
-                <a href="#"> <i class="fas fa-envelope"></i> haadkhan@gmail.com </a>
-                <a href="#"> <i class="fas fa-envelope"></i> jawadkhan@gmail.com </a>
-                <!-- <img src="image/worldmap.png" class="map" alt=""> -->
-            </div>
+        <div class="box">
+            <h3>Contact Info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+            <a href="#"> <i class="fas fa-envelope"></i> dalvimehdi@gmail.com </a>
+            <a href="#"> <i class="fas fa-envelope"></i> haadkhan@gmail.com </a>
+            <a href="#"> <i class="fas fa-envelope"></i> jawadkhan@gmail.com </a>
+            <!-- <img src="image/worldmap.png" class="map" alt=""> -->
+        </div>
 
-            <div class="box">
-                <!-- <h3>contact info</h3>
+        <div class="box">
+            <!-- <h3>contact info</h3>
             <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
             <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
             <a href="#"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
             <img src="image/worldmap.png" class="map" alt=""> -->
-            </div>
-
         </div>
 
+    </div>
 
 
-        <!-- <section class="footer">
+
+    <!-- <section class="footer">
 
         <div class="box-container" style="margin-left: 25%;">
 
@@ -184,27 +184,26 @@ include("header.php");
 
         </div> -->
 
-        <div class="share">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
-            <a href="#" class="fab fa-pinterest"></a>
-        </div>
-
-        <div class="credit"> Copyright | All Rights Reserved!
-            <i class="fa fa-copyright"></i>
-        </div>
-    </section>
-
-    <!-- footer section ends -->
-
-    <!-- loader  -->
-
-    <div class="loader-container">
-        <img src="image/loader-img.gif" alt="">
+    <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+        <a href="#" class="fab fa-pinterest"></a>
     </div>
 
+    <div class="credit"> Copyright | All Rights Reserved!
+        <i class="fa fa-copyright"></i>
+    </div>
+</section>
+
+<!-- footer section ends -->
+
+<!-- loader  -->
+
+<div class="loader-container">
+    <img src="image/loader-img.gif" alt="">
+</div>
 
 
 
@@ -220,10 +219,11 @@ include("header.php");
 
 
 
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-    <!-- custom js file link  -->
-    <script src="js/script.js"></script>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
 
 </body>
 
