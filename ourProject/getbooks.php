@@ -1,10 +1,8 @@
 <?php 
 include('dbconnect.php');
-
 $getproducts = mysqli_query($conn ,"SELECT * FROM book1 ")or die (mysqli_error($conn));
 
 ?>
-
 <style>
     .mainfont{
         text-transform: uppercase;
