@@ -14,7 +14,6 @@ $getproducts = mysqli_query($conn ,"SELECT * FROM book1 ")or die (mysqli_error($
         text-transform: uppercase;
     }
 </style>
-
 <div class="container-fluid">
     <?php 
         while ($fetproducts = mysqli_fetch_object($getproducts)) {
