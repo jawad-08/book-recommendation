@@ -1,7 +1,7 @@
 searchForm = document.querySelector('.search-form');
 
-document.querySelector('#search-btn').onclick = () =>{
-  searchForm.classList.toggle('active');
+document.querySelector('#search-btn').onclick = () => {
+    searchForm.classList.toggle('active');
 }
 
 
@@ -9,230 +9,231 @@ document.querySelector('#search-btn').onclick = () =>{
 let loginForm = document.querySelector('.login-form-container');
 
 var usrnam = document.getElementById('usrnam').value;
-if(usrnam == ""){
-  document.querySelector('#login-btn').onclick = () =>{
-    loginForm.classList.toggle('active');
- }
-  
-  document.querySelector('#close-login-btn').onclick = () =>{
-    loginForm.classList.remove('active');
-  }
+if (usrnam == "") {
+    document.querySelector('#login-btn').onclick = () => {
+        loginForm.classList.toggle('active');
+    }
+
+    document.querySelector('#close-login-btn').onclick = () => {
+        loginForm.classList.remove('active');
+    }
 }
 
 
 
 let signupForm = document.querySelector('.signup-form-container');
 
- if(usrnam == ""){
-  document.querySelector('#signup-btn').onclick = () =>{
-    signupForm.classList.toggle('active');
-  }
-  
-  document.querySelector('#close-signup-btn').onclick = () =>{
-    signupForm.classList.remove('active');
-  }
+if (usrnam == "") {
+    document.querySelector('#signup-btn').onclick = () => {
+        signupForm.classList.toggle('active');
+    }
+
+    document.querySelector('#close-signup-btn').onclick = () => {
+        signupForm.classList.remove('active');
+    }
 }
 
 
 function showPass() {
-  var x = document.getElementById("pwd");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+    var x = document.getElementById("pwd");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
 }
+
 function showPass2() {
-  var x = document.getElementById("pass");
-  var y = document.getElementById("conpass");
-  if (x.type === "password" && y.type === "password") {
-    x.type = "text";
-    y.type = "text";
-  } else {
-    x.type = "password";
-    y.type = "password";
-  }
+    var x = document.getElementById("pass");
+    var y = document.getElementById("conpass");
+    if (x.type === "password" && y.type === "password") {
+        x.type = "text";
+        y.type = "text";
+    } else {
+        x.type = "password";
+        y.type = "password";
+    }
 }
 
-function verifyPassword() {  
-  var pw = document.getElementById("pass").value;  
-  var cpw = document.getElementById("conpass").value;  
+function verifyPassword() {
+    var pw = document.getElementById("pass").value;
+    var cpw = document.getElementById("conpass").value;
 
-  if(pw == cpw) {  
-     document.getElementById("message").innerHTML = "Password matched!!";  
-     return false;  
-  }
-  else{
-    document.getElementById("message").innerHTML = "Password doesn't matched!!";  
-  }  
+    if (pw == cpw) {
+        document.getElementById("message").innerHTML = "Password matched!!";
+        return false;
+    } else {
+        document.getElementById("message").innerHTML = "Password doesn't matched!!";
+    }
 }
 
 
-window.onscroll = () =>{
+window.onscroll = () => {
 
-  searchForm.classList.remove('active');
+    searchForm.classList.remove('active');
 
-  if(window.scrollY > 80){
-    document.querySelector('.header .header-2').classList.add('active');
-  }else{
-    document.querySelector('.header .header-2').classList.remove('active');
-  }
-
-}
-
-window.onload = () =>{
-
-  if(window.scrollY > 80){
-    document.querySelector('.header .header-2').classList.add('active');
-  }else{
-    document.querySelector('.header .header-2').classList.remove('active');
-  }
-
-  fadeOut();
+    if (window.scrollY > 80) {
+        document.querySelector('.header .header-2').classList.add('active');
+    } else {
+        document.querySelector('.header .header-2').classList.remove('active');
+    }
 
 }
 
-function loader(){
-  document.querySelector('.loader-container').classList.add('active');
+window.onload = () => {
+
+    if (window.scrollY > 80) {
+        document.querySelector('.header .header-2').classList.add('active');
+    } else {
+        document.querySelector('.header .header-2').classList.remove('active');
+    }
+
+    fadeOut();
+
 }
 
-function fadeOut(){
-  setTimeout(loader, 3000);
-}
+// function loader() {
+//     document.querySelector('.loader-container').classList.add('active');
+// }
 
-var swiper = new Swiper(".books-slider", {
-  loop:true,
-  centeredSlides: true,
-  autoplay: {
-    delay: 9500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-  },
-});
 
-var swiper = new Swiper(".featured-slider", {
-  spaceBetween: 10,
-  loop:true,
-  centeredSlides: true,
-  autoplay: {
-    delay: 9500,
-    disableOnInteraction: false,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    450: {
-      slidesPerView: 2,
-    },
-    768: {
-      slidesPerView: 3,
-    },
-    1024: {
-      slidesPerView: 4,
-    },
-  },
-});
+// function fadeOut() {
+//     setTimeout(loader, 3000);
+// }
 
-var swiper = new Swiper(".arrivals-slider", {
-  spaceBetween: 10,
-  loop:true,
-  centeredSlides: true,
-  autoplay: {
-    delay: 9500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-  },
-});
+// var swiper = new Swiper(".books-slider", {
+//   loop:true,
+//   centeredSlides: true,
+//   autoplay: {
+//     delay: 9500,
+//     disableOnInteraction: false,
+//   },
+//   breakpoints: {
+//     0: {
+//       slidesPerView: 1,
+//     },
+//     768: {
+//       slidesPerView: 2,
+//     },
+//     1024: {
+//       slidesPerView: 3,
+//     },
+//   },
+// });
 
-var swiper = new Swiper(".reviews-slider", {
-  spaceBetween: 10,
-  grabCursor:true,
-  loop:true,
-  centeredSlides: true,
-  autoplay: {
-    delay: 9500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-  },
-});
+// var swiper = new Swiper(".featured-slider", {
+//     spaceBetween: 10,
+//     loop: true,
+//     centeredSlides: true,
+//     autoplay: {
+//         delay: 9500,
+//         disableOnInteraction: false,
+//     },
+//     navigation: {
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev",
+//     },
+//     breakpoints: {
+//         0: {
+//             slidesPerView: 1,
+//         },
+//         450: {
+//             slidesPerView: 2,
+//         },
+//         768: {
+//             slidesPerView: 3,
+//         },
+//         1024: {
+//             slidesPerView: 4,
+//         },
+//     },
+// });
 
-var swiper = new Swiper(".blogs-slider", {
-  spaceBetween: 10,
-  grabCursor:true,
-  loop:true,
-  centeredSlides: true,
-  autoplay: {
-    delay: 9500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-  },
-});
+// var swiper = new Swiper(".arrivals-slider", {
+//     spaceBetween: 10,
+//     loop: true,
+//     centeredSlides: true,
+//     autoplay: {
+//         delay: 9500,
+//         disableOnInteraction: false,
+//     },
+//     breakpoints: {
+//         0: {
+//             slidesPerView: 1,
+//         },
+//         768: {
+//             slidesPerView: 2,
+//         },
+//         1024: {
+//             slidesPerView: 3,
+//         },
+//     },
+// });
+
+// var swiper = new Swiper(".reviews-slider", {
+//     spaceBetween: 10,
+//     grabCursor: true,
+//     loop: true,
+//     centeredSlides: true,
+//     autoplay: {
+//         delay: 9500,
+//         disableOnInteraction: false,
+//     },
+//     breakpoints: {
+//         0: {
+//             slidesPerView: 1,
+//         },
+//         768: {
+//             slidesPerView: 2,
+//         },
+//         1024: {
+//             slidesPerView: 3,
+//         },
+//     },
+// });
+
+// var swiper = new Swiper(".blogs-slider", {
+//     spaceBetween: 10,
+//     grabCursor: true,
+//     loop: true,
+//     centeredSlides: true,
+//     autoplay: {
+//         delay: 9500,
+//         disableOnInteraction: false,
+//     },
+//     breakpoints: {
+//         0: {
+//             slidesPerView: 1,
+//         },
+//         768: {
+//             slidesPerView: 2,
+//         },
+//         1024: {
+//             slidesPerView: 3,
+//         },
+//     },
+// });
 
 
 let preveiwContainer = document.querySelector('.booksPreview');
 let previewBox = preveiwContainer.querySelectorAll('.preview');
 
-document.querySelectorAll('.featured .featured-slider .box .icons a').forEach(book =>{
-  book.onclick = () =>{
-    preveiwContainer.style.display = 'flex';
-    let name = book.getAttribute('data-name');
-    previewBox.forEach(preview =>{
-      let target = preview.getAttribute('data-target');
-      if(name == target){
-        preview.classList.add('active');
-      }
-    });
-  };
+document.querySelectorAll('.featured .featured-slider .box .icons a').forEach(book => {
+    book.onclick = () => {
+        preveiwContainer.style.display = 'flex';
+        let name = book.getAttribute('data-name');
+        previewBox.forEach(preview => {
+            let target = preview.getAttribute('data-target');
+            if (name == target) {
+                preview.classList.add('active');
+            }
+        });
+    };
 });
 
-previewBox.forEach(close =>{
-  close.querySelector('.imgSec .fa-arrow-left').onclick = () =>{
-    close.classList.remove('active');
-    preveiwContainer.style.display = 'none';
-  };
+previewBox.forEach(close => {
+    close.querySelector('.imgSec .fa-arrow-left').onclick = () => {
+        close.classList.remove('active');
+        preveiwContainer.style.display = 'none';
+    };
 });

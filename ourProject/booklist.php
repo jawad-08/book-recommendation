@@ -1,12 +1,13 @@
 <?php
-include("header.php");
 include("dbconnect.php");
+include("header.php");
 
 $getcategory = mysqli_query($conn, "SELECT * from category where name != '' group by name order by name") or die(mysqli_error($conn));
-
 ?>
 
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -19,7 +20,8 @@ $getcategory = mysqli_query($conn, "SELECT * from category where name != '' grou
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+
     <script src="js/booklist.js"></script>
 
     <style>
@@ -98,6 +100,7 @@ $getcategory = mysqli_query($conn, "SELECT * from category where name != '' grou
             padding-left: 5%;
         }
     </style>
+  <!-- <script src="js/script.js"></script> -->
 
 </head>
 
@@ -131,101 +134,7 @@ $getcategory = mysqli_query($conn, "SELECT * from category where name != '' grou
 
             <div class="single-products">
                 <div class="row">
-                    <div class="col-lg-4 ">
-
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="image-wrapper">
-                                    <img src="https://40.media.tumblr.com/2a46a0ec64f5d1c0dcc8814baf9833f4/tumblr_nj930lpXGB1qif4c6o1_1280.jpg"
-                                        alt="" class="image" />
-                                </div>
-                                <div class="content-wrapper">
-                                    <div class="title">
-                                        <h4>Folk-tastic Pennant</h4>
-                                    </div>
-                                    <div class="price">
-                                        $19.99
-                                    </div>
-                                    <div class="description">
-                                        This is one of the coolest pennants money can buy. Hang it on your wall, above
-                                        your
-                                        cool
-                                        leather shoes, or even in your Victorian-era bathroom.
-                                    </div>
-                                    <div class="actions">
-                                        <button id="cart" class="button flip green-solid cart">
-                                            <span class="front">Add to Cart</span>
-                                            <span class="backside">Added</span>
-                                        </button>
-                                        <button class="button black-simple more">More Details</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 ">
-
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="image-wrapper">
-                                    <img src="https://40.media.tumblr.com/2a46a0ec64f5d1c0dcc8814baf9833f4/tumblr_nj930lpXGB1qif4c6o1_1280.jpg"
-                                        alt="" class="image" />
-                                </div>
-                                <div class="content-wrapper">
-                                    <div class="title">
-                                        <h4>Folk-tastic Pennant</h4>
-                                    </div>
-                                    <div class="price">
-                                        $19.99
-                                    </div>
-                                    <div class="description">
-                                        This is one of the coolest pennants money can buy. Hang it on your wall, above
-                                        your
-                                        cool
-                                        leather shoes, or even in your Victorian-era bathroom.
-                                    </div>
-                                    <div class="actions">
-                                        <button id="cart" class="button flip green-solid cart">
-                                            <span class="front">Add to Cart</span>
-                                            <span class="backside">Added</span>
-                                        </button>
-                                        <button class="button black-simple more">More Details</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 ">
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="image-wrapper">
-                                    <img src="https://40.media.tumblr.com/2a46a0ec64f5d1c0dcc8814baf9833f4/tumblr_nj930lpXGB1qif4c6o1_1280.jpg"
-                                        alt="" class="image" />
-                                </div>
-                                <div class="content-wrapper">
-                                    <div class="title">
-                                        <h4>Folk-tastic Pennant</h4>
-                                    </div>
-                                    <div class="price">
-                                        $19.99
-                                    </div>
-                                    <div class="description">
-                                        This is one of the coolest pennants money can buy. Hang it on your wall, above
-                                        your
-                                        cool
-                                        leather shoes, or even in your Victorian-era bathroom.
-                                    </div>
-                                    <div class="actions">
-                                        <button id="cart" class="button flip green-solid cart">
-                                            <span class="front">Add to Cart</span>
-                                            <span class="backside">Added</span>
-                                        </button>
-                                        <button class="button black-simple more">More Details</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
                 <input type="hidden" class="curpagival" value="1">
@@ -233,4 +142,27 @@ $getcategory = mysqli_query($conn, "SELECT * from category where name != '' grou
         </div>
 
 
+<section>
+    <div class="booksPreview">
+        <div class="preview" data-target="1">
+            <div class="imgSec">
+                <i class="fas fa-arrow-left"></i>
+                <img src="image/bk1.jpg" alt="">
+                <h3>Book Name</h3>
+            </div>
+            <div class="detailSec">
+                <i class="far fa-heart"></i>
+                <i class="far fa-bookmark"></i>
+                <div class="overview">
+                    <h5>Overview about the book</h5>
+                </div>
+                <div class="ratings">
+
+                </div>
+                <div class="comments"></div>
+                <div class="link"></div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>

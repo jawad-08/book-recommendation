@@ -5,18 +5,24 @@ include("dbconnect.php");
 
 if (isset($_POST["submit"])) {
 
-    $login = mysqli_query($conn, "SELECT * FROM `login` WHERE `name` = '" . mysqli_real_escape_string($conn, $_POST['name']) . "'
-                              AND `pwd` = '" . mysqli_real_escape_string($conn, $_POST['pwd']) . "'") or die(mysqli_error($conn));
+    $login = mysqli_query($conn, "SELECT * FROM `user` WHERE `username` = '" . mysqli_real_escape_string($conn, $_POST['name']) . "'
+                              AND `password` = '" . mysqli_real_escape_string($conn, $_POST['pwd']) . "'") or die(mysqli_error($conn));
 
     if (mysqli_num_rows($login) == 1) {
         $_SESSION["username"] = $_POST['name'];
+         print '<script type="text/javascript">';
+        print 'alert("Login Succesful")';
+        print '</script>';
         header("Location:main.php");
 
     } else {
+        print '<script type="text/javascript">';
+        print 'alert("Invalid Login Credentials")';
+        print '</script>';
         $_SESSION["username"] = "";
     }
 }
-
+ 
 
 if (isset($_POST["submit2"])) {
     $a = 1;
@@ -27,18 +33,26 @@ if (isset($_POST["submit2"])) {
     $gender = $_POST["gender"];
     $mvouch = $qvouch;
 
-    if ($fname != "" && $pass != "") {
-        mysqli_query($conn, "INSERT INTO `user`(`id`,`name`,`username`,`password`,`email`,`gender`)
-    VALUES('$qvouch' , '$fname', '$uname','$pass','$email','$gender')") or die(mysqli_error($conn));
-    }
+    $login = mysqli_query($conn, "SELECT * FROM `user` WHERE `username` = '" . mysqli_real_escape_string($conn, $_POST['uname']) . "'
+                              AND `password` = '" . mysqli_real_escape_string($conn, $_POST['pass']) . "'") or die(mysqli_error($conn));
+
+                              
     if (mysqli_num_rows($login) == 1) {
-        $_SESSION["username"] = $_POST['name'];
-        header("Location:main.php");
-
-    } else {
-        $_SESSION["username"] = "";
-    }
-
+        print '<script type="text/javascript">';
+        print 'alert("Username Already Exist")';
+        print '</script>';
+    }else{
+        if ($fname != "" && $pass != "") {
+            mysqli_query($conn, "INSERT IGNORE INTO `user`(`name`,`username`,`password`,`email`,`gender`)
+            VALUES('$fname', '$uname','$pass','$email','$gender')") or die(mysqli_error($conn));
+    
+    
+            $_SESSION["username"] = $_POST['uname'];
+            header("Location:main.php");
+        } else {
+            $_SESSION["username"] = "";
+        }
+    }   
 }
 ?>
 <!DOCTYPE html>
@@ -148,7 +162,7 @@ if (isset($_POST["submit2"])) {
 
         <div id="close-signup-btn" class="fas fa-times"></div>
 
-        <form action="" method="POST" onsubmit="return verifyPassword()">
+        <form action="" method="POST">
             <h3>sign up</h3>
             <span>full name</span>
             <input type="text" name="fname" class="box" placeholder="enter your full name" id="">
@@ -164,9 +178,9 @@ if (isset($_POST["submit2"])) {
             <input type="password" name="conpass" class="box" placeholder="enter your password again" id="conpass">
 
             <span style="margin-bottom: 2%">gender</span>
-            <input type="radio" style="width:20px;height:25px" name="gender" value="male"><span
+            <input type="radio" style="width:20px;height:25px" name="gender" value="M"><span
                 style="display: inline;vertical-align: top;padding-left: 2%;padding-right: 2%;">Male</span>
-            <input type="radio" style="width:20px;height:25px" name="gender" value="female"><span
+            <input type="radio" style="width:20px;height:25px" name="gender" value="F"><span
                 style="display: inline;vertical-align: top;padding-left: 2%;">Female</span>
 
             <span id="message" style="color:red"> </span>

@@ -1,5 +1,10 @@
 $(document).ready(function() {
     $("body").on("click", ".filter", FiltBook);
+    // $("body").on("click", ".ratin", getRatingMod);
+
+    // function getRatingMod() {
+    //     $(".bookModal").modal("show");
+    // }
 
     function FiltBook() {
         var bkfilt = "";
